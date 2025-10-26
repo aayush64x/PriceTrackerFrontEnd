@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import Count from "./Components/Practice/Practice"
 import ProductDetail from "./Components/ProductDetail/ProductDetail";
+import WatchList from "./Components/Watchlist/WatchList";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/practice" element={<Count />} />
         <Route path="/product-detail" element={<ProductDetail/>} />
+        <Route path="/watchlist" element={<WatchList />} />
         
       </Routes>
     </>

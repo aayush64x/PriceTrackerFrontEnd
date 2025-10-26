@@ -1,0 +1,470 @@
+/* Watchlist Page Styles */
+.watchlist-container {
+    min-height: 100vh;
+    background: #ffffff;
+    color: #000000;
+  }
+  
+  /* Login/Email Section */
+  .watchlist-login {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: #ffffff;
+  }
+  
+  .watchlist-login .back-link {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.3s;
+  }
+  
+  .watchlist-login .back-link:hover {
+    opacity: 0.7;
+  }
+  
+  .login-card {
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .watchlist-icon {
+    font-size: 3rem;
+    color: #000000;
+    margin-bottom: 1.5rem;
+  }
+  
+  .login-card h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #000000;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+  }
+  
+  .login-card p {
+    color: #666666;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .email-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+    background: #ffffff;   /* explicitly set white background */
+    color: #000000;       /* black text */
+  }
+
+  .email-input::placeholder {
+        color: #999999;       /* placeholder text color */
+  }
+
+  .email-input:focus {
+        background: #f8f8f8;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        color: #000000;        /* ensure text remains black on focus */
+  }
+  
+  .submit-btn {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .submit-btn:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: #ff0000;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #ffebee;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  
+  .signup-prompt {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .signup-prompt p {
+    color: #666666;
+    font-size: 0.95rem;
+  }
+  
+  .signup-prompt a {
+    color: #000000;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  
+  .signup-prompt a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Watchlist Header */
+  .watchlist-header {
+    background: #000000;
+    color: #ffffff;
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .watchlist-header .header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .watchlist-header .back-link {
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+  }
+  
+  .watchlist-header .back-link:hover {
+    opacity: 0.8;
+  }
+  
+  .watchlist-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .user-info span {
+    color: #ffffff;
+    font-weight: 500;
+  }
+  
+  .logout-btn {
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+  }
+  
+  .logout-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+  }
+  
+  /* Watchlist Content */
+  .watchlist-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+  
+  /* Empty Watchlist */
+  .empty-watchlist {
+    text-align: center;
+    padding: 5rem 2rem;
+  }
+  
+  .empty-icon {
+    font-size: 5rem;
+    color: #e0e0e0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .empty-watchlist h2 {
+    font-size: 2rem;
+    color: #000000;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  
+  .empty-watchlist p {
+    color: #666666;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .browse-btn {
+    display: inline-block;
+    background: #000000;
+    color: #ffffff;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .browse-btn:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Watchlist Grid */
+  .watchlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .watchlist-card {
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .watchlist-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-image {
+    position: relative;
+    height: 200px;
+    background: #f8f8f8;
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .remove-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #000000;   /* black background */
+    color: #ffffff;        /* white icon */
+    border: 2px solid #000000; /* black border */
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+  }
+
+.remove-btn:hover {
+    background: #ffffff;  /* invert on hover */
+    color: #ff0000;
+    border-color: #ff0000;
+    transform: scale(1.1);
+}
+
+  
+  .remove-btn:hover {
+    background: #ff0000;
+    color: #ffffff;
+    transform: scale(1.1);
+  }
+  
+  .card-details {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-details h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .price-section {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .current-price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #000000;
+  }
+  
+  .original-price {
+    font-size: 1.1rem;
+    color: #999999;
+    text-decoration: line-through;
+  }
+  
+  .price-tracking {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+  
+  .tracking-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tracking-info:last-child {
+    margin-bottom: 0;
+  }
+  
+  .tracking-info .label {
+    color: #666666;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .tracking-info .value {
+    color: #000000;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  
+  .card-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .alert-btn {
+    flex: 1;
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    padding: 0.75rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .alert-btn:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+  
+  .view-btn {
+    flex: 1;
+    background: #000000;
+    color: #ffffff;
+    padding: 0.75rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+  
+  .view-btn:hover {
+    background: #333333;
+    transform: translateY(-1px);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .watchlist-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .login-card {
+      padding: 2rem;
+    }
+    
+    .login-card h1 {
+      font-size: 2rem;
+    }
+    
+    .watchlist-header .header-content {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
