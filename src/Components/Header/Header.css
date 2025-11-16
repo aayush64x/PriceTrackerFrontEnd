@@ -1,0 +1,133 @@
+/* Header */
+
+.top-header {
+  background: #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  gap: 24px;
+  height: 64px;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+.back-link:hover {
+  opacity: 0.8;
+}
+
+.header-search {
+  flex: 1;
+  max-width: 500px;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 25px;
+  padding: 8px 16px;
+  border: 2px solid #ffffff;
+  transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.search-icon {
+  color: #000000;
+  margin-right: 12px;
+  font-size: 14px;
+}
+
+.search-field {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.search-field::placeholder {
+  color: #666666;
+}
+
+.search-btn {
+  background: #000000;
+  color: #fff;
+  border: 2px solid #000000;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: all 0.3s ease;
+  font-size: 13px;
+}
+
+.search-btn:hover {
+  background: #333333;
+  transform: translateY(-1px);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+.auth-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+  font-size: 14px;
+}
+
+.auth-link:hover {
+  opacity: 0.8;
+}
+
+.auth-btn {
+  background: #fff;
+  color: #000000;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 13px;
+  border: 2px solid #fff;
+}
+
+.auth-btn:hover {
+  background: #f0f0f0;
+  transform: translateY(-1px);
+}
+
