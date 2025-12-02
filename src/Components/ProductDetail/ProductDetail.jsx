@@ -1,4 +1,5 @@
-//product detail.jsx that won't add to watchlist
+// UPDATED ProductDetail.jsx - Email automatically from localStorage
+// No email input field needed!
 
 // src/Components/ProductDetail/ProductDetail.jsx
 import React, { useState, useEffect } from 'react';
@@ -22,7 +23,7 @@ const ProductDetail = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [targetPrice, setTargetPrice] = useState('');
-  const [email, setEmail] = useState('');
+  // ❌ REMOVED: const [email, setEmail] = useState('');
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const ProductDetail = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:8080/api/products/product-detail?q=${query}`
+          `http://localhost:8080/public/products/product-detail?q=${query}`
         );
         if (!response.ok) throw new Error('Failed to fetch product detail');
         const data = await response.json();
@@ -50,7 +51,7 @@ const ProductDetail = () => {
     const fetchPriceHistory = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/api/products/price-history?asin=${query}`
+          `http://localhost:8080/price-history?q=${query}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -75,30 +76,39 @@ const ProductDetail = () => {
 
     if (!product) return;
 
+
+    const userEmail = localStorage.getItem('userEmail');
+
+
+    if (!userEmail) {
+      alert('Please log in to add products to your watchlist');
+      navigate('/login');
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:8080/api/watchlist/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          asin: product.ASIN,
-          userEmail: email,
-          targetPrice
+          asin: product.asin,
+          email: userEmail,  // ✅ Use email from localStorage
+          targetPrice: parseFloat(targetPrice)
         })
       });
 
       if (response.ok) {
-        alert(`Product added to watchlist for ${email}!`);
+        alert('Product added to watchlist!');
+        setShowModal(false);
+        setTargetPrice('');
       } else {
-        alert('Failed to add to watchlist. Please try again.');
+        const errorText = await response.text();
+        alert(errorText || 'Failed to add to watchlist. Please try again.');
       }
     } catch (error) {
       console.error(error);
       alert('Error adding to watchlist. Please try again later.');
     }
-
-    setShowModal(false);
-    setEmail('');
-    setTargetPrice('');
   };
 
   if (loading) {
@@ -157,7 +167,7 @@ const ProductDetail = () => {
                   </button>
 
                   <a
-                    href={product.link || '#'}
+                    href={product.link || `https://www.amazon.com/dp/${product.asin}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="product-amazon-button"
@@ -180,7 +190,7 @@ const ProductDetail = () => {
                 </div>
                 <div className="spec-content">
                   <div className="spec-label">ASIN</div>
-                  <div className="spec-value">{product.ASIN || query || 'N/A'}</div>
+                  <div className="spec-value">{product.asin || query || 'N/A'}</div>
                 </div>
               </div>
 
@@ -219,7 +229,7 @@ const ProductDetail = () => {
 
           {/* Price History Chart */}
           <section className="product-chart-section">
-            <h2 className="product-chart-title">Price History (Last 90 Days)</h2>
+            <h2 className="product-chart-title">Price History</h2>
             <div className="product-chart-container">
               {priceHistory.length > 0 ? (
                 <ResponsiveContainer width="100%" height={400}>
@@ -247,7 +257,7 @@ const ProductDetail = () => {
         </div>
       </main>
 
-      {/* Watchlist Modal */}
+      {/* Watchlist Modal - NO EMAIL FIELD! */}
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -271,17 +281,7 @@ const ProductDetail = () => {
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Email Address</label>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="form-input"
-                />
-              </div>
+              {/* ❌ EMAIL FIELD COMPLETELY REMOVED! */}
 
               <div className="modal-actions">
                 <button type="button" onClick={() => setShowModal(false)} className="btn-cancel">

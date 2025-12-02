@@ -1,61 +1,101 @@
 import React, { useState } from 'react';
-import './Login.css';
-import { FaUser, FaLock } from "react-icons/fa";
-import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import './Login.css';
 
 const Login = () => {
-    /*
-    const [username, setUsername] = useState()
-    const [password, setPassword] = useState()
-    const navigate = useNavigate()
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  //const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:5000/login', {username, password})
-        .then(result => {console.log(result)
-        navigate('/home')
-        })
-        .catch(err=> console.log(err))
-    }*/
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    return (
-        <div className='wrapper'> 
-                <h1>Login</h1>
+    const loginData = {
+      email: email,
+      password: password
+    };
 
-                <div className="input-box">
-                    <input type="text" placeholder='Username' required 
-                    /*value={username} onChange = {e => setUsername(e.target.value)}*//>
-                    <span className="icon"><FaUser /></span>
-                </div>
+    try {
+      const response = await axios.post('http://localhost:8080/login', loginData);
+      
+      // Store JWT token
+      localStorage.setItem('token', response.data);
+      localStorage.setItem('userEmail', email);
+      
+      // Trigger a custom event to notify other components
+      window.dispatchEvent(new Event('authChange'));
+      
+      console.log('Login successful!');
+      alert('Login successful!');
+      
+      // Clear form
+      setEmail('');
+      setPassword('');
+      
+      // Navigate to dashboard
+      navigate('/dashboard');
+      
+    } catch (error) {
+      console.error('Login error:', error);
+      
+      if (error.response?.data?.error) {
+        alert(error.response.data.error);
+      } else {
+        alert('Invalid email or password. Please try again.');
+      }
+    }
+  };
 
-                <div className="input-box">
-                    <input type="password" placeholder='Password' required
-                    /*value={password} onChange = {e => setPassword(e.target.value)}*//>
-                    <span className="icon"><FaLock /></span>
-                </div>
-
-                <div className="remember-forgot">
-                    <label><input type="checkbox" /> Remember me</label>
-                    <a href="#"> Forgot password?</a>
-                </div>
-
-                <button type="submit">Login</button>
-
-                <div className="register-link">
-                    <p> Don't have an account? <Link to="/register">Sign Up</Link></p>
-                </div>
-
-                {/*}
-                <div className="login-link">
-                    <p> Already have an account? <Link to="/login">Login</Link></p>
-                </div>
-                */}
-            
+  return (
+    <div className="wrapper">
+      <form onSubmit={handleLogin}>
+        <h1>Login</h1>
+        
+        <div className="input-box">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <i className='bx bxs-envelope icon'></i>
         </div>
-    );
+
+        <div className="input-box">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <i className='bx bxs-lock-alt icon'></i>
+        </div>
+{/*
+        <div className="remember-forgot">
+          <label>
+            <input 
+              type="checkbox" 
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+            />
+            Remember me
+          </label>
+          <a href="#">Forgot password?</a>
+        </div>
+  */}
+
+        <button type="submit">Login</button>
+
+        <div className="register-link">
+          <p>Don't have an account? <a href="/register">Register</a></p>
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default Login;

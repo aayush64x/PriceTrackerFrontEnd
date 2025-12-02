@@ -31,7 +31,7 @@ const Search = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:8080/api/products/search?keyword=${query}`
+          `http://localhost:8080/public/products/search?keyword=${query}`
         );
 
         if (!response.ok) {
@@ -145,7 +145,7 @@ const Search = () => {
               <h1>Search Results for "{query}"</h1>
               <p>{products.length} products found</p>
             </div>
-
+          {/*
             <div className="sort-controls">
               <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="sort-select">
                 <option value="relevance">Sort by Relevance</option>
@@ -153,6 +153,7 @@ const Search = () => {
                 <option value="price-high">Price: High to Low</option>
               </select>
             </div>
+            */}
           </div>
 
           {loading ? (

@@ -1,23 +1,63 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { FaSearch, FaArrowLeft } from "react-icons/fa";
-import { useState } from "react"; 
-
-//import "./Header.css";
+import { FaSearch, FaArrowLeft, FaUser } from "react-icons/fa";
+import { useState, useEffect } from "react"; 
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
+
+  // Check authentication status on mount and when localStorage changes
+  useEffect(() => {
+    const checkAuth = () => {
+      const token = localStorage.getItem('token');
+      const email = localStorage.getItem('userEmail');
+      
+      if (token && email) {
+        setIsLoggedIn(true);
+        setUserEmail(email);
+      } else {
+        setIsLoggedIn(false);
+        setUserEmail("");
+      }
+    };
+
+    // Check on mount
+    checkAuth();
+
+    // Listen for custom auth change event
+    window.addEventListener('authChange', checkAuth);
+
+    // Listen for storage changes (e.g., login/logout in another tab)
+    window.addEventListener('storage', checkAuth);
+
+    return () => {
+      window.removeEventListener('authChange', checkAuth);
+      window.removeEventListener('storage', checkAuth);
+    };
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim() !== "") {
-      // Update URL with ?q= parameter to trigger SearchResults
       navigate(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
-      
-    }else if (searchTerm.trim() === ""){
-        navigate(`/`);
+    } else if (searchTerm.trim() === "") {
+      navigate(`/`);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
+    setIsLoggedIn(false);
+    setUserEmail("");
+    
+    // Trigger custom event
+    window.dispatchEvent(new Event('authChange'));
+    
+    navigate('/');
   };
 
   return (
@@ -47,14 +87,27 @@ const Header = () => {
           </form>
         </div>
 
-        {/* Auth Links */}
+        {/* Auth Links - Conditional Rendering */}
         <div className="header-actions">
-          <Link to="/login" className="auth-link">
-            Sign In
-          </Link>
-          <Link to="/register" className="auth-btn">
-            Join Us
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <Link to="/dashboard" className="auth-btn dashboard-btn">
+                Dashboard
+              </Link>
+              <button onClick={handleLogout} className="auth-btn logout-btn">
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="auth-link">
+                Sign In
+              </Link>
+              <Link to="/register" className="auth-btn">
+                Join Us
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

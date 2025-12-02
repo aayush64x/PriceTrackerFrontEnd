@@ -121,7 +121,7 @@ const WatchList = () => {
                 <div className="card-image">
                   <img src={item.imageURL || '/images/default.jpg'} alt={item.productName} />
                   <button onClick={() => removeFromWatchlist(item.id)} className="remove-btn">
-                    <FaTrash />
+                    <FaTrash /> 
                   </button>
                 </div>
 

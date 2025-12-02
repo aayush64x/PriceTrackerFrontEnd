@@ -29,12 +29,13 @@ const LandingPage = () => {
           <div className="logo">
             <h2>PriceTracker</h2>
           </div>
-          
+        {/*
           <nav className={`nav-menu ${isMenuOpen ? 'nav-menu-active' : ''}`}>
             <Link to="#features" className="nav-link">Features</Link>
             <Link to="#how-it-works" className="nav-link">How It Works</Link>
             <Link to="/watchlist" className="nav-link">Watchlist</Link>
           </nav>
+        */}
 
           <div className="nav-actions">
             {/* Search Form in Header */}
